@@ -12,8 +12,22 @@ public class AccidentMem {
 
     private final HashMap<Integer, Accident> accidents = new HashMap<>();
 
-    public void add(int number, Accident accident) {
-        accidents.put(number, accident);
+    private int ids = 1;
+
+    public AccidentMem() {
+        Accident firstAccident = new Accident();
+        Accident secondAccident = new Accident();
+        Accident thirdAccident = new Accident();
+        firstAccident.setName("Accident 1");
+        secondAccident.setName("Accident 2");
+        thirdAccident.setName("Accident 3");
+        create(firstAccident);
+        create(secondAccident);
+        create(thirdAccident);
+    }
+
+    public void create(Accident accident) {
+        accidents.put(ids++, accident);
     }
 
     public HashMap<Integer, Accident> findAll() {

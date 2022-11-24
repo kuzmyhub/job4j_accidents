@@ -13,8 +13,8 @@ public class AccidentService {
 
     private AccidentMem accidentMem;
 
-    public void add(Integer number, Accident accident) {
-        accidentMem.add(number, accident);
+    public void create(Accident accident) {
+        accidentMem.create(accident);
     }
 
     public HashMap<Integer, Accident> findAll() {

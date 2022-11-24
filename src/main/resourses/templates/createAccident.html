@@ -27,21 +27,22 @@
         <p class="navbar-brand" th:text="${user}">Пользователь</p>
     </nav>
 
-    <div style="padding-top: 20px">
-        <table style="margin: auto" border="3">
-            <thead>
-            <tr>
-                <th>number</th>
-                <th>accident</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="accident: ${accidents}">
-                <td th:text="${accident.key}"></td>
-                <td th:text="${accident.value.name}"></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Новый инцидент
+            </div>
+            <div class="card-body">
+                <form th:action="@{/saveAccident}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="0"/>
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
 
 </div>

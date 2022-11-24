@@ -16,15 +16,6 @@ public class IndexControl {
     @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("user", "Гость");
-        Accident firstAccident = new Accident();
-        Accident secondAccident = new Accident();
-        Accident thirdAccident = new Accident();
-        firstAccident.setName("Accident 1");
-        secondAccident.setName("Accident 2");
-        thirdAccident.setName("Accident 3");
-        accidentService.add(1, firstAccident);
-        accidentService.add(2, secondAccident);
-        accidentService.add(3, thirdAccident);
         model.addAttribute("accidents", accidentService.findAll());
         return "index";
     }
