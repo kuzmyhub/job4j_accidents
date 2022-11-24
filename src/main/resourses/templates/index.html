@@ -18,12 +18,28 @@
     <title>Автомобильные инциденты</title>
 </head>
 <body>
-<div class="container">
+<div class="container pt-3" style="text-align: center">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/index}">Автомобильные инциденты</a>
         <a class="navbar-brand" th:text="${user}">Регистрация</a>
     </nav>
 
-    <div th:text="${user}"></div>
+    <div style="padding-top: 20px">
+        <table style="margin: auto" border="3">
+            <thead>
+            <tr>
+                <th>number</th>
+                <th>accident</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="accident: ${accidents}">
+                <td th:text="${accident.key}"></td>
+                <td th:text="${accident.value.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 </body>

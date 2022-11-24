@@ -19,9 +19,9 @@ public class IndexControl {
         Accident firstAccident = new Accident();
         Accident secondAccident = new Accident();
         Accident thirdAccident = new Accident();
-        firstAccident.setText("Accident 1");
-        secondAccident.setText("Accident 2");
-        thirdAccident.setText("Accident 3");
+        firstAccident.setName("Accident 1");
+        secondAccident.setName("Accident 2");
+        thirdAccident.setName("Accident 3");
         accidentService.add(1, firstAccident);
         accidentService.add(2, secondAccident);
         accidentService.add(3, thirdAccident);
