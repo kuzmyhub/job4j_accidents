@@ -6,6 +6,7 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentMem;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -15,6 +16,14 @@ public class AccidentService {
 
     public void create(Accident accident) {
         accidentMem.create(accident);
+    }
+
+    public void save(Accident accident) {
+        accidentMem.save(accident);
+    }
+
+    public Optional<Accident> findById(int id) {
+        return accidentMem.findById(id);
     }
 
     public HashMap<Integer, Accident> findAll() {
