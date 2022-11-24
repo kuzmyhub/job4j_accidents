@@ -3,6 +3,7 @@ package ru.job4j.accidents.repository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.AccidentType;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -16,22 +17,22 @@ public class AccidentMem {
     private int ids = 1;
 
     public AccidentMem() {
-        Accident firstAccident = new Accident();
-        Accident secondAccident = new Accident();
-        Accident thirdAccident = new Accident();
-        firstAccident.setId(ids++);
-        secondAccident.setId(ids++);
-        thirdAccident.setId(ids++);
-        ids = 1;
-        firstAccident.setName("Accident 1");
-        secondAccident.setName("Accident 2");
-        thirdAccident.setName("Accident 3");
-        create(firstAccident);
-        create(secondAccident);
-        create(thirdAccident);
+        accidents.put(ids++, new Accident(
+                1, "Accident 1", "text", "address",
+                new AccidentType(1, "Две машины")
+        ));
+        accidents.put(ids++, new Accident(
+                2, "Accident 2", "text", "address",
+                new AccidentType(1, "Машина и человек")
+        ));
+        accidents.put(ids++, new Accident(
+                3, "Accident 3", "text", "address",
+                new AccidentType(1, "Машина и велосипед")
+        ));
     }
 
     public void create(Accident accident) {
+        accident.setId(ids);
         accidents.put(ids++, accident);
     }
 

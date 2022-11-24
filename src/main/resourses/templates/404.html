@@ -27,28 +27,10 @@
         <p class="navbar-brand" th:text="${user}">Пользователь</p>
     </nav>
 
-    <div class="row pt-3">
-        <div class="card" style="width: 100%">
-            <div class="card-header">
-                Редактирование инцидента
-            </div>
-            <div class="card-body">
-                <form th:action="@{/saveAccident}" method="POST" th:object="${accident}">
-                    <input type="hidden" name="id" th:value="*{id}"/>
-                    <div class="form-group">
-                        <label for="name">Имя</label>
-                        <input type="text" class="form-control" name="name" id="name" th:value="*{name}">
-                    </div>
-                    <div class="form-group">
-                        <label for="accidentType.id">Тип</label>
-                        <select class="form-control" id="accidentType.id" name="accidentType.id">
-                            <option th:each="accidentType: ${accidentTypes}" th:text="${accidentType.name}" th:value="${accidentType.id}"></option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
-                </form>
-            </div>
-        </div>
+    <div style="padding-top: 50px">
+        <p style="font-size: 28px"><b>404</b></p>
+        <p><b>not found</b></p>
+        <p>страница не найдена</p>
     </div>
 
 </div>

@@ -34,6 +34,7 @@
                 <th>number</th>
                 <th>accident</th>
                 <th>edit</th>
+                <th>accident type</th>
             </tr>
             </thead>
             <tbody>
@@ -45,6 +46,7 @@
                         <i th:text="edit" class="fa fa-edit"></i>
                     </a>
                 </td>
+                <td th:text="${accident.value.accidentType.name}"></td>
             </tr>
             </tbody>
         </table>

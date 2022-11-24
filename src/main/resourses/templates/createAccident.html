@@ -39,6 +39,12 @@
                         <label for="name">Имя</label>
                         <input type="text" class="form-control" name="name" id="name">
                     </div>
+                    <div class="form-group">
+                        <label for="accidentType.id">Тип</label>
+                        <select class="form-control" id="accidentType.id" name="accidentType.id">
+                            <option th:each="accidentType: ${accidentTypes}" th:text="${accidentType.name}" th:value="${accidentType.id}"></option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
                 </form>
             </div>
