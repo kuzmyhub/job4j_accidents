@@ -41,7 +41,8 @@ public class AccidentControl {
     public String create(@ModelAttribute Accident accident) {
         Optional<AccidentType> accidentType = accidentTypeService
                 .findById(
-                        accident.getAccidentType().getId()
+                        accident.getAccidentType()
+                                .getId()
                 );
         if (accidentType.isEmpty()) {
             return "404";
@@ -55,7 +56,8 @@ public class AccidentControl {
     public String save(@ModelAttribute Accident accident) {
         Optional<AccidentType> accidentType = accidentTypeService
                 .findById(
-                        accident.getAccidentType().getId()
+                        accident.getAccidentType()
+                                .getId()
                 );
         if (accidentType.isEmpty()) {
             return "404";
