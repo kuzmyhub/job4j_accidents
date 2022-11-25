@@ -64,6 +64,6 @@ public class AccidentMem {
     }
 
     public List<Accident> findAll() {
-        return new ArrayList<Accident>(accidents.values());
+        return new ArrayList<>(accidents.values());
     }
 }

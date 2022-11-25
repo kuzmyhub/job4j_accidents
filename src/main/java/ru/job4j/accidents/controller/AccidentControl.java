@@ -37,29 +37,31 @@ public class AccidentControl {
         return "createAccident";
     }
 
+    @PostMapping("/createAccident")
+    public String create(@ModelAttribute Accident accident) {
+        Optional<AccidentType> accidentType = accidentTypeService
+                .findById(
+                        accident.getAccidentType().getId()
+                );
+        if (accidentType.isEmpty()) {
+            return "404";
+        }
+        accident.setAccidentType(accidentType.get());
+        accidentService.create(accident);
+        return "redirect:/index";
+    }
+
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident) {
-        if (accident.getId() == 0) {
-            Optional<AccidentType> accidentType = accidentTypeService
-                    .findById(
-                    accident.getAccidentType().getId()
-            );
-            if (accidentType.isEmpty()) {
-                return "404";
-            }
-            accident.setAccidentType(accidentType.get());
-            accidentService.create(accident);
-        } else {
-            Optional<AccidentType> accidentType = accidentTypeService
-                    .findById(
-                            accident.getAccidentType().getId()
-                    );
-            if (accidentType.isEmpty()) {
-                return "404";
-            }
-            accident.setAccidentType(accidentType.get());
-            accidentService.save(accident);
+        Optional<AccidentType> accidentType = accidentTypeService
+                .findById(
+                        accident.getAccidentType().getId()
+                );
+        if (accidentType.isEmpty()) {
+            return "404";
         }
+        accident.setAccidentType(accidentType.get());
+        accidentService.save(accident);
         return "redirect:/index";
     }
 
