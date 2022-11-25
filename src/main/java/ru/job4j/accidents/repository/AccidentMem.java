@@ -32,7 +32,7 @@ public class AccidentMem {
                 2, "Accident 2", "text", "address",
                 new AccidentType(1, "Машина и человек"),
                 Set.of(
-                        new Rule(1, "Статья. 2"),
+                        new Rule(1, "Статья. 1"),
                         new Rule(2, "Статья. 3")
                 )
         ));
@@ -40,7 +40,7 @@ public class AccidentMem {
                 3, "Accident 3", "text", "address",
                 new AccidentType(1, "Машина и велосипед"),
                 Set.of(
-                        new Rule(1, "Статья. 1"),
+                        new Rule(1, "Статья. 2"),
                         new Rule(2, "Статья. 3")
                 )
         ));
