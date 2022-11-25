@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/index}">Главная</a>
         <a class="navbar-brand" th:href="@{/index}">Инциденты</a>
-        <a class="navbar-brand" th:href="@{/createAccident}">Добавить инцидент</a>
+        <a class="navbar-brand" th:href="@{/formCreateAccident}">Добавить инцидент</a>
         <p class="navbar-brand" th:text="${user}">Пользователь</p>
     </nav>
 
@@ -43,6 +43,12 @@
                         <label for="accidentType.id">Тип</label>
                         <select class="form-control" id="accidentType.id" name="accidentType.id">
                             <option th:each="accidentType: ${accidentTypes}" th:text="${accidentType.name}" th:value="${accidentType.id}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rIds" name="rIds">Статья</label>
+                        <select class="form-control" id="rIds" name="rIds" multiple>
+                            <option th:each="rule: ${rules}" th:text="${rule.name}" th:value="${rule.id}"></option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Сохранить</button>

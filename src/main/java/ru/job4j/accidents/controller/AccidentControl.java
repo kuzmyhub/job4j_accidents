@@ -14,6 +14,8 @@ import ru.job4j.accidents.service.AccidentService;
 import ru.job4j.accidents.service.AccidentTypeService;
 import ru.job4j.accidents.service.RuleService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,17 +30,18 @@ public class AccidentControl {
 
     private RuleService ruleService;
 
-    @GetMapping("/createAccident")
+    @GetMapping("/formCreateAccident")
     public String viewCreateAccident(Model model) {
         List<AccidentType> accidentTypes = accidentTypeService.findAll();
         Set<Rule> rules = ruleService.findAll();
         model.addAttribute("accidentTypes", accidentTypes);
         model.addAttribute("rules", rules);
-        return "createAccident";
+        return "formCreateAccident";
     }
 
     @PostMapping("/createAccident")
-    public String create(@ModelAttribute Accident accident) {
+    public String create(@ModelAttribute Accident accident,
+                         HttpServletRequest httpServletRequest) {
         Optional<AccidentType> accidentType = accidentTypeService
                 .findById(
                         accident.getAccidentType()
@@ -48,12 +51,26 @@ public class AccidentControl {
             return "404";
         }
         accident.setAccidentType(accidentType.get());
+        String[] rIds = httpServletRequest.getParameterValues("rIds");
+        Set<Rule> rules = new HashSet<>();
+        for (String r : rIds) {
+            Optional<Rule> optionalRule = ruleService
+                    .findById(
+                    Integer.parseInt(r)
+            );
+            if (optionalRule.isEmpty()) {
+                return "404";
+            }
+            rules.add(optionalRule.get());
+        }
+        accident.setRules(rules);
         accidentService.create(accident);
         return "redirect:/index";
     }
 
     @PostMapping("/saveAccident")
-    public String save(@ModelAttribute Accident accident) {
+    public String save(@ModelAttribute Accident accident,
+                       HttpServletRequest httpServletRequest) {
         Optional<AccidentType> accidentType = accidentTypeService
                 .findById(
                         accident.getAccidentType()
@@ -63,6 +80,19 @@ public class AccidentControl {
             return "404";
         }
         accident.setAccidentType(accidentType.get());
+        String[] rIds = httpServletRequest.getParameterValues("rIds");
+        Set<Rule> rules = new HashSet<>();
+        for (String r : rIds) {
+            Optional<Rule> optionalRule = ruleService
+                    .findById(
+                            Integer.parseInt(r)
+                    );
+            if (optionalRule.isEmpty()) {
+                return "404";
+            }
+            rules.add(optionalRule.get());
+        }
+        accident.setRules(rules);
         accidentService.save(accident);
         return "redirect:/index";
     }
@@ -74,8 +104,10 @@ public class AccidentControl {
             return "404";
         }
         List<AccidentType> accidentTypes = accidentTypeService.findAll();
-        model.addAttribute("accidentTypes", accidentTypes);
+        Set<Rule> rules = ruleService.findAll();
         model.addAttribute("accident", optionalAccident.get());
+        model.addAttribute("accidentTypes", accidentTypes);
+        model.addAttribute("rules", rules);
         return "formUpdateAccident";
     }
 }

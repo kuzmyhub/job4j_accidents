@@ -23,18 +23,19 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/index}">Главная</a>
         <a class="navbar-brand" th:href="@{/index}">Инциденты</a>
-        <a class="navbar-brand" th:href="@{/createAccident}">Добавить инцидент</a>
+        <a class="navbar-brand" th:href="@{/formCreateAccident}">Добавить инцидент</a>
         <p class="navbar-brand" th:text="${user}">Пользователь</p>
     </nav>
 
     <div style="padding-top: 20px">
-        <table style="margin: auto" border="3">
+        <table style="margin: auto" width="500px" border="1px">
             <thead>
             <tr>
-                <th>number</th>
-                <th>accident</th>
-                <th>edit</th>
-                <th>accident type</th>
+                <th>№</th>
+                <th>Инцидент</th>
+                <th>Отредактировать</th>
+                <th>Тип инцидента</th>
+                <th>Статья</th>
             </tr>
             </thead>
             <tbody>
@@ -47,6 +48,10 @@
                     </a>
                 </td>
                 <td th:text="${accident.accidentType.name}"></td>
+                <!--<td th:each="rule: ${accident.rules}" th:text="${rule.name}"></td>-->
+                <td>
+                    <p th:each="rule: ${accident.rules}" th:text="${rule.name}"></p>
+                </td>
             </tr>
             </tbody>
         </table>
