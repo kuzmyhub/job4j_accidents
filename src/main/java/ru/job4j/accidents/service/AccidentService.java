@@ -6,6 +6,7 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentMem;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,7 +27,7 @@ public class AccidentService {
         return accidentMem.findById(id);
     }
 
-    public HashMap<Integer, Accident> findAll() {
+    public List<Accident> findAll() {
         return accidentMem.findAll();
     }
 }

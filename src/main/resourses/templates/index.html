@@ -39,14 +39,14 @@
             </thead>
             <tbody>
             <tr th:each="accident: ${accidents}">
-                <td th:text="${accident.key}"></td>
-                <td th:text="${accident.value.name}"></td>
+                <td th:text="${accident.id}"></td>
+                <td th:text="${accident.name}"></td>
                 <td>
-                    <a th:href="@{|/formUpdateAccident?id=${accident.value.id}|}">
+                    <a th:href="@{|/formUpdateAccident?id=${accident.id}|}">
                         <i th:text="edit" class="fa fa-edit"></i>
                     </a>
                 </td>
-                <td th:text="${accident.value.accidentType.name}"></td>
+                <td th:text="${accident.accidentType.name}"></td>
             </tr>
             </tbody>
         </table>

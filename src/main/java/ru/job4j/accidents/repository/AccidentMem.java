@@ -6,10 +6,8 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.model.Rule;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 @AllArgsConstructor
@@ -19,8 +17,10 @@ public class AccidentMem {
 
     private int ids = 1;
 
+    AtomicInteger atomicInteger = new AtomicInteger(ids);
+
     public AccidentMem() {
-        accidents.put(ids++, new Accident(
+        accidents.put(atomicInteger.get(), new Accident(
                 1, "Accident 1", "text", "address",
                 new AccidentType(1, "Две машины"),
                 Set.of(
@@ -28,7 +28,8 @@ public class AccidentMem {
                         new Rule(2, "Статья. 2")
                 )
         ));
-        accidents.put(ids++, new Accident(
+        atomicInteger.getAndIncrement();
+        accidents.put(atomicInteger.get(), new Accident(
                 2, "Accident 2", "text", "address",
                 new AccidentType(1, "Машина и человек"),
                 Set.of(
@@ -36,7 +37,8 @@ public class AccidentMem {
                         new Rule(2, "Статья. 3")
                 )
         ));
-        accidents.put(ids++, new Accident(
+        atomicInteger.getAndIncrement();
+        accidents.put(atomicInteger.get(), new Accident(
                 3, "Accident 3", "text", "address",
                 new AccidentType(1, "Машина и велосипед"),
                 Set.of(
@@ -44,11 +46,13 @@ public class AccidentMem {
                         new Rule(2, "Статья. 3")
                 )
         ));
+        atomicInteger.getAndIncrement();
     }
 
     public void create(Accident accident) {
-        accident.setId(ids);
-        accidents.put(ids++, accident);
+        accident.setId(atomicInteger.get());
+        accidents.put(atomicInteger.get(), accident);
+        atomicInteger.getAndIncrement();
     }
 
     public void save(Accident accident) {
@@ -59,7 +63,7 @@ public class AccidentMem {
         return Optional.ofNullable(accidents.get(id));
     }
 
-    public HashMap<Integer, Accident> findAll() {
-        return new HashMap<>(accidents);
+    public List<Accident> findAll() {
+        return new ArrayList<Accident>(accidents.values());
     }
 }
