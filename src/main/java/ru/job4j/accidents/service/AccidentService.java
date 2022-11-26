@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentJdbcTemplate;
+import ru.job4j.accidents.repository.AccidentMem;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,10 +13,10 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AccidentService {
 
-    private AccidentJdbcTemplate accidentJdbcTemplate;
+    private AccidentMem accidentJdbcTemplate;
 
-    public Accident create(Accident accident) {
-        return accidentJdbcTemplate.create(accident);
+    public void create(Accident accident) {
+        accidentJdbcTemplate.create(accident);
     }
 
     public void save(Accident accident) {

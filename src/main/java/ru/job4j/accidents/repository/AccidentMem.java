@@ -15,9 +15,7 @@ public class AccidentMem {
 
     private final HashMap<Integer, Accident> accidents = new HashMap<>();
 
-    private int ids = 0;
-
-    AtomicInteger atomicInteger = new AtomicInteger(ids);
+    AtomicInteger atomicInteger = new AtomicInteger(0);
 
     public AccidentMem() {
         accidents.put(atomicInteger.incrementAndGet(), new Accident(
@@ -48,7 +46,7 @@ public class AccidentMem {
 
     public void create(Accident accident) {
         accident.setId(atomicInteger.incrementAndGet());
-        accidents.put(atomicInteger.get(), accident);
+        accidents.put(accident.getId(), accident);
     }
 
     public void save(Accident accident) {
