@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS accidents_types(
+CREATE TABLE IF NOT EXISTS accident_types(
 id SERIAL PRIMARY KEY,
 name VARCHAR
 );

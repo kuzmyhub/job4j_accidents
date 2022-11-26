@@ -68,7 +68,7 @@ public class AccidentControl {
         return "redirect:/index";
     }
 
-    @PostMapping("/saveAccident")
+    @PostMapping("/updateAccident")
     public String save(@ModelAttribute Accident accident,
                        HttpServletRequest httpServletRequest) {
         Optional<AccidentType> accidentType = accidentTypeService

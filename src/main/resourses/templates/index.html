@@ -28,29 +28,32 @@
     </nav>
 
     <div style="padding-top: 20px">
-        <table style="margin: auto" width="500px" border="1px">
+        <table style="margin: auto" width="700px" border="1px">
             <thead>
             <tr>
                 <th>№</th>
                 <th>Инцидент</th>
-                <th>Отредактировать</th>
+                <th>Текст</th>
+                <th>Адрес</th>
                 <th>Тип инцидента</th>
                 <th>Статья</th>
+                <th>Отредактировать</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="accident: ${accidents}">
                 <td th:text="${accident.id}"></td>
                 <td th:text="${accident.name}"></td>
+                <td th:text="${accident.text}"></td>
+                <td th:text="${accident.address}"></td>
+                <td th:text="${accident.accidentType.name}"></td>
+                <td>
+                    <p th:each="rule: ${accident.rules}" th:text="${rule.name}"></p>
+                </td>
                 <td>
                     <a th:href="@{|/formUpdateAccident?id=${accident.id}|}">
                         <i th:text="edit" class="fa fa-edit"></i>
                     </a>
-                </td>
-                <td th:text="${accident.accidentType.name}"></td>
-                <!--<td th:each="rule: ${accident.rules}" th:text="${rule.name}"></td>-->
-                <td>
-                    <p th:each="rule: ${accident.rules}" th:text="${rule.name}"></p>
                 </td>
             </tr>
             </tbody>

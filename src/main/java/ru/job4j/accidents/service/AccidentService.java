@@ -3,9 +3,8 @@ package ru.job4j.accidents.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.repository.AccidentMem;
+import ru.job4j.accidents.repository.AccidentJdbcTemplate;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,21 +12,21 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AccidentService {
 
-    private AccidentMem accidentMem;
+    private AccidentJdbcTemplate accidentJdbcTemplate;
 
-    public void create(Accident accident) {
-        accidentMem.create(accident);
+    public Accident create(Accident accident) {
+        return accidentJdbcTemplate.create(accident);
     }
 
     public void save(Accident accident) {
-        accidentMem.save(accident);
+        accidentJdbcTemplate.save(accident);
     }
 
     public Optional<Accident> findById(int id) {
-        return accidentMem.findById(id);
+        return accidentJdbcTemplate.findById(id);
     }
 
     public List<Accident> findAll() {
-        return accidentMem.findAll();
+        return accidentJdbcTemplate.findAll();
     }
 }
