@@ -5,18 +5,31 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
+@Table(name = "accidents")
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
     private String name;
     private String text;
     private String address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accident_types_id")
     private AccidentType accidentType;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "accidents_rules",
+            joinColumns = { @JoinColumn(name = "accidents_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "rules_id", nullable = false, updatable = false) })
     private Set<Rule> rules;
 }

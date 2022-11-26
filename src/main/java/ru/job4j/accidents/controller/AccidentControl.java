@@ -39,7 +39,7 @@ public class AccidentControl {
         return "formCreateAccident";
     }
 
-    @PostMapping("/createAccident")
+    /*@PostMapping("/createAccident")
     public String create(@ModelAttribute Accident accident,
                          HttpServletRequest httpServletRequest) {
         Optional<AccidentType> accidentType = accidentTypeService
@@ -66,7 +66,7 @@ public class AccidentControl {
         accident.setRules(rules);
         accidentService.create(accident);
         return "redirect:/index";
-    }
+    }*/
 
     @PostMapping("/updateAccident")
     public String save(@ModelAttribute Accident accident,
@@ -97,7 +97,7 @@ public class AccidentControl {
         return "redirect:/index";
     }
 
-    @GetMapping("/formUpdateAccident")
+    /*@GetMapping("/formUpdateAccident")
     public String update(@RequestParam("id") int id, Model model) {
         Optional<Accident> optionalAccident = accidentService.findById(id);
         if (optionalAccident.isEmpty()) {
@@ -109,5 +109,5 @@ public class AccidentControl {
         model.addAttribute("accidentTypes", accidentTypes);
         model.addAttribute("rules", rules);
         return "formUpdateAccident";
-    }
+    }*/
 }
