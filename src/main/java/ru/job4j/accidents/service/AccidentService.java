@@ -13,7 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AccidentService {
 
-    private AccidentJdbcTemplate accidentRepository;
+    private AccidentHibernate accidentRepository;
 
     public Accident create(Accident accident) {
         return accidentRepository.create(accident);
