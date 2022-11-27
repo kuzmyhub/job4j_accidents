@@ -1,6 +1,5 @@
 package ru.job4j.accidents.repository;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
@@ -10,12 +9,11 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
-@AllArgsConstructor
 public class AccidentMem {
 
     private final HashMap<Integer, Accident> accidents = new HashMap<>();
 
-    AtomicInteger atomicInteger = new AtomicInteger(0);
+    private final AtomicInteger atomicInteger = new AtomicInteger(0);
 
     public AccidentMem() {
         accidents.put(atomicInteger.incrementAndGet(), new Accident(

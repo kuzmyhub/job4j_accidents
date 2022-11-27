@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentHibernate;
+import ru.job4j.accidents.repository.AccidentMem;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,19 +13,19 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AccidentService {
 
-    private AccidentHibernate accidentRepository;
+    private AccidentMem accidentRepository;
 
-    /*public Accident create(Accident accident) {
-        return accidentRepository.create(accident);
-    }*/
+    public void create(Accident accident) {
+        accidentRepository.create(accident);
+    }
 
     public void save(Accident accident) {
         accidentRepository.save(accident);
     }
 
-    /*public Optional<Accident> findById(int id) {
+    public Optional<Accident> findById(int id) {
         return accidentRepository.findById(id);
-    }*/
+    }
 
     public List<Accident> findAll() {
         return accidentRepository.findAll();
