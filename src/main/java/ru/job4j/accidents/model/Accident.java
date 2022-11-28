@@ -14,6 +14,10 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@NamedEntityGraph(name = "Accident.detail",
+        attributeNodes = {
+        @NamedAttributeNode("accidentType"), @NamedAttributeNode("rules")
+})
 @Table(name = "accidents")
 public class Accident {
     @Id
