@@ -21,6 +21,10 @@ public class AccidentHibernate {
             JOIN FETCH a.rules
             """;
 
+    private static final String SELECT_ACCIDENT = """
+            SELECT a FROM Accident a WHERE id = :fId
+            """;
+
     public Accident create(Accident accident) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
@@ -41,9 +45,9 @@ public class AccidentHibernate {
     public Optional<Accident> findById(int id) {
         Optional<Accident> optionalAccident;
         try (Session session = sessionFactory.openSession()) {
-            optionalAccident = Optional.of(session.get(Accident.class, id));
-        } catch (Exception e) {
-            optionalAccident = Optional.empty();
+            optionalAccident = session.createQuery(SELECT_ACCIDENT)
+                    .setParameter("fId", id)
+                    .uniqueResultOptional();
         }
         return optionalAccident;
     }
