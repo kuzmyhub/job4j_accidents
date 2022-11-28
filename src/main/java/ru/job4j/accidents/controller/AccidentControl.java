@@ -64,7 +64,7 @@ public class AccidentControl {
             rules.add(optionalRule.get());
         }
         accident.setRules(rules);
-        accidentService.create(accident);
+        accidentService.save(accident);
         return "redirect:/index";
     }
 

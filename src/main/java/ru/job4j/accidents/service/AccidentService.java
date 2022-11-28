@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.repository.AccidentHibernate;
 import ru.job4j.accidents.repository.AccidentJdbcTemplate;
+import ru.job4j.accidents.repository.AccidentRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +14,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AccidentService {
 
-    private AccidentHibernate accidentRepository;
+    private AccidentRepository accidentRepository;
 
-    public Accident create(Accident accident) {
+    /*public Accident create(Accident accident) {
         return accidentRepository.create(accident);
-    }
+    }*/
 
     public void save(Accident accident) {
         accidentRepository.save(accident);
