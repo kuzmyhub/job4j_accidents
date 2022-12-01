@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import ru.job4j.accidents.Main;
 import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.repository.UserRepository;
-import ru.job4j.accidents.service.AccidentService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
