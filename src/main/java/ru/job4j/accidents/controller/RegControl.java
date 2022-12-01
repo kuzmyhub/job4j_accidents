@@ -16,7 +16,9 @@ import ru.job4j.accidents.repository.UserRepository;
 public class RegControl {
 
     private final PasswordEncoder encoder;
+
     private final UserRepository users;
+
     private final AuthorityRepository authorities;
 
     @PostMapping("/reg")
