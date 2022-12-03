@@ -16,20 +16,22 @@ import ru.job4j.accidents.repository.UserRepository;
 public class RegControl {
 
     private final PasswordEncoder encoder;
+
     private final UserRepository users;
+
     private final AuthorityRepository authorities;
 
     @PostMapping("/reg")
     public String regSave(@ModelAttribute User user, Model model) {
-        if (users.findByUsername(user.getUsername()).isPresent()) {
-            String errorMessage = "Username already exists";
-            model.addAttribute("errorMessage", errorMessage);
-            return "reg";
-        }
         user.setEnabled(true);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setAuthority(authorities.findByAuthority("ROLE_USER"));
-        users.save(user);
+        try {
+            users.save(user);
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Username already exists");
+            return "reg";
+        }
         return "redirect:/login";
     }
 
